@@ -1,27 +1,29 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
 
-import Page from './Page'
+import Page from "./Page";
 
-const Pagination = ({ currentPageNumber, totalNumberOfPages, onChange }) => {
-  const pages =
-    Array
-      .from(Array(totalNumberOfPages).keys())
-      .map(pageNumber => {
-        return <Page
-          key={pageNumber}
-          currentPageNumber={currentPageNumber}
-          pageNumber={pageNumber}
-          onChange={onChange} />
-      })
+const Pagination = ({ currentPageNumber, totalPages, onChange }) => {
+  const pages = [];
 
-  if (pages.length <= 1) {
-    return null
+  for (let pageNumber = 0; pageNumber < totalPages; pageNumber++) {
+    pages.push(
+      <Page
+        key={pageNumber}
+        currentPageNumber={currentPageNumber}
+        pageNumber={pageNumber}
+        onChange={onChange}
+      />
+    );
   }
-  return(
-    <ul className="pagination">
-      {pages}
-    </ul>
-  )
-}
 
-export default Pagination
+  return pages.length > 1 ? <ul className="pagination">{pages}</ul> : null;
+};
+
+Pagination.propTypes = {
+  currentPageNumber: PropTypes.number,
+  totalPages: PropTypes.number,
+  onChange: PropTypes.func,
+};
+
+export default Pagination;
