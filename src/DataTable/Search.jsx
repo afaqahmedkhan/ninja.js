@@ -1,17 +1,20 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
 
-const Search = (props) => {
-  const { onSearch } = props
-
+const Search = ({ onSearch, placeholder }) => {
   return (
-    <div className="p-b-1">
-      <input
-        type="search"
-        className="form-control"
-        placeholder="Søg brugere"
-        onChange={onSearch.bind(this)} />
-    </div>
-  )
-}
+    <input
+      type="search"
+      className="form-control"
+      placeholder={placeholder || "Søg brugere"}
+      onChange={onSearch}
+    />
+  );
+};
 
-export default Search
+Search.propTypes = {
+  placeholder: PropTypes.string,
+  onSearch: PropTypes.func,
+};
+
+export default Search;
