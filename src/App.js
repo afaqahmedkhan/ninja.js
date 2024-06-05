@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DataTable from './DataTable';
 import './App.css';
+import data from './seed.json';
+const App = () => {
 
-class App extends Component {
-  render() {
     return (
       <div className="container mt-3">
-        <DataTable rows={this.props.rows} locale="da" rowsPerPage={5} />
+        <DataTable data={data} locale="da" rowsPerPage={5} />
       </div>
     );
-  }
+  
 }
 
 export default App;
